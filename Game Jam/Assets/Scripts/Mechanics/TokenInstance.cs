@@ -49,6 +49,14 @@ namespace Platformer.Mechanics
         {
             print("Collision detected");
 
+            if (collected)
+            {
+                // If player collects
+                // Change player color
+                print("Item already collected");
+                return;
+            }
+
             var current_color = player.GetComponent<SpriteRenderer>().color;
 
             Color Gray = new Color(128, 128, 128);
@@ -109,12 +117,7 @@ namespace Platformer.Mechanics
                 player.jumpTakeOffSpeed = 10;
             }
 
-            if (collected) {
-                // If player collects
-                // Change player color
-                print("Item already collected");
-                return;
-            }
+
             
             //disable the gameObject and remove it from the controller update list.
             frame = 0;

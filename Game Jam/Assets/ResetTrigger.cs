@@ -30,6 +30,26 @@ namespace Platformer.Mechanics {
             player.maxSpeed = 4;
             player.jumpTakeOffSpeed = 4;
 
+            // Set all tokens to active
+            var tokens = UnityEngine.Object.FindObjectsOfType<TokenInstance>();
+
+            print("Total tokens: " + tokens.Length);
+
+            for (var i = 0; i < tokens.Length; i++)
+            {
+
+
+                // If token is collected, set it to not collected
+                if (tokens[i].collected)
+                {
+                    tokens[i].gameObject.SetActive(true);
+                    tokens[i].collected = false;
+                    tokens[i].sprites = tokens[i].idleAnimation;
+                    tokens[i].frame = 0;
+                    tokens[i]._renderer.sprite = tokens[i].sprites[tokens[i].frame];
+                }
+            }
+
         }
     }
 }

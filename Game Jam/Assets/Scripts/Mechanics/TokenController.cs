@@ -22,6 +22,7 @@ namespace Platformer.Mechanics
         void FindAllTokensInScene()
         {
             tokens = UnityEngine.Object.FindObjectsOfType<TokenInstance>();
+
         }
 
         void Awake()
@@ -53,8 +54,8 @@ namespace Platformer.Mechanics
                         token._renderer.sprite = token.sprites[token.frame];
                         if (token.collected && token.frame == token.sprites.Length - 1)
                         {
-                            token.gameObject.SetActive(false);
-                            tokens[i] = null;
+                            //token.gameObject.SetActive(false);
+                            //tokens[i] = null;
                         }
                         
                         else

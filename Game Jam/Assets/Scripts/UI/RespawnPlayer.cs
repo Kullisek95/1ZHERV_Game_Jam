@@ -1,18 +1,32 @@
+
+using Platformer.Mechanics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Platformer.Gameplay;
+using static Platformer.Core.Simulation;
+using Unity.VisualScripting.FullSerializer;
 
-public class RespawnPlayer : MonoBehaviour
+
+namespace Platformer.UI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class RespawnPlayer : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void RespawnPlayerFunction()
+        {
+            var player = GetComponent<PlayerController>();
+
+            print("Player resetting");
+
+            Color original_player_color = Color.gray;
+
+            player.GetComponent<SpriteRenderer>().color = original_player_color;
+            player.maxSpeed = 4;
+            player.jumpTakeOffSpeed = 4;
+
+        }
     }
 }
+
+
