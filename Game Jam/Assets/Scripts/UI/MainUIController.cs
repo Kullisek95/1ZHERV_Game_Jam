@@ -55,6 +55,14 @@ namespace Platformer.UI
                     tokens[i]._renderer.sprite = tokens[i].sprites[tokens[i].frame];
                 }
             }
+
+            // Toggle main menu
+            var metaGameController = GameObject.FindObjectOfType<MetaGameController>();
+            if (metaGameController != null)
+            {
+                metaGameController.ToggleMainMenu(false);
+                print("Toggled main menu");
+            }
         }
 
         public void Victory()
