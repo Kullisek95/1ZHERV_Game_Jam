@@ -1,18 +1,35 @@
+using Platformer.Mechanics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Platformer.Gameplay;
+using static Platformer.Core.Simulation;
+using Unity.VisualScripting.FullSerializer;
+using Platformer.UI;
 
-public class VictoryTrigger : MonoBehaviour
+
+
+namespace Platformer.Mechanics
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [RequireComponent(typeof(Collider2D))]
 
-    // Update is called once per frame
-    void Update()
+
+    public class VictoryTrigger : MonoBehaviour
     {
-        
+        void OnTriggerEnter2D(Collider2D collider)
+        {
+            // Toggle main menu
+            var metaGameController = GameObject.FindObjectOfType<MetaGameController>();
+            if (metaGameController != null)
+            {
+                metaGameController.ToggleMainMenu(true);
+                // Set active panel to 2
+                metaGameController.mainMenu.SetActivePanel(2);
+
+                metaGameController.mainMenu.Victory();
+            }
+        }
     }
 }
+
+
