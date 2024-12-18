@@ -9,10 +9,10 @@ using Unity.VisualScripting.FullSerializer;
 
 namespace Platformer.Mechanics {
     [RequireComponent(typeof(Collider2D))]
-
+    
     public class ResetTrigger : MonoBehaviour
     {
-
+        public AudioClip resetCollisionAudio;
         void OnTriggerEnter2D(Collider2D other)
         {
             print("Trigger entered");
@@ -37,8 +37,6 @@ namespace Platformer.Mechanics {
 
             for (var i = 0; i < tokens.Length; i++)
             {
-
-
                 // If token is collected, set it to not collected
                 if (tokens[i].collected)
                 {
@@ -50,6 +48,10 @@ namespace Platformer.Mechanics {
                 }
             }
 
+            //send an event into the gameplay system to perform some behaviour.
+            var ev = Schedule<PlayerResetCollision>();
+            ev.reset_trigger = this;
+            ev.player = player;
         }
     }
 }
